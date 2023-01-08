@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/againBtn2"
+        android:layout_width="159dp"
+        android:layout_height="45dp"
+        android:background="@drawable/rounded_button"
+        android:fontFamily="@font/roboto_mediumm"
+        android:gravity="center"
+        android:paddingStart="20sp"
+        android:text="Search Again"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.354"
+        tools:ignore="HardcodedText,RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/titleText"
+        android:layout_width="match_parent"
+        android:layout_height="78dp"
+        android:background="@drawable/roundedbottom"
+        android:fontFamily="@font/roboto_mediumm"
+        android:gravity="center"
+        android:text="@string/titleText"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/quesTitle"
+        android:layout_width="match_parent"
+        android:layout_height="110dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_ques"
+        android:fontFamily="@font/roboto_mediumm"
+        android:paddingStart="25sp"
+        android:paddingTop="7sp"
+        android:text="@string/question_goes"
+        android:textColor="#5A5A5A"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
+        tools:ignore="RtlSymmetry" />
+
+    <EditText
+        android:id="@+id/message_input"
+        android:layout_width="match_parent"
+        android:layout_height="74dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rouned_et"
+        android:ems="10"
+        android:fontFamily="@font/roboto_mediumm"
+        android:hint="@string/type_something"
+        android:importantForAutofill="no"
+        android:inputType="text"
+        android:paddingStart="25sp"
+        android:paddingEnd="25sp"
+        android:paddingBottom="36sp"
+        android:textColor="@color/black"
+        android:textColorHint="#78909C"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="@+id/quesTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/quesTitle"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="RtlSymmetry"
+        android:imeOptions="actionGo"/>
+
+    <TextView
+        android:id="@+id/sendBtn"
+        android:layout_width="88dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="308dp"
+        android:background="@drawable/rounded_button"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/roboto_mediumm"
+        android:gravity="center"
+        android:text="@string/go"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/quesTitle"
+        app:layout_constraintVertical_bias="0.148"
+        tools:ignore="TextContrastCheck" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="305dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_ques"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sendBtn" />
+
+
+    <ScrollView
+        android:id="@+id/ansScroll"
+        android:layout_width="match_parent"
+        android:layout_height="282dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rouned_et"
+        app:layout_constraintBottom_toBottomOf="@+id/view2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view2"
+        app:layout_constraintVertical_bias="1.0">
+
+        <TextView
+            android:id="@+id/textAns"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="20sp"
+            android:paddingTop="20sp"
+            android:paddingEnd="20sp"
+            android:text="@string/answer_will_be_shown_here"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            tools:ignore="RtlSymmetry" />
+    </ScrollView>
+
+    <Button
+        android:id="@+id/shareButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/share_answer"
+        android:textColor="@color/white"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        app:layout_constraintVertical_bias="0.451" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/againBtn2"
+        app:layout_constraintEnd_toEndOf="@+id/againBtn2"
+        app:layout_constraintHorizontal_bias="0.081"
+        app:layout_constraintStart_toStartOf="@+id/againBtn2"
+        app:layout_constraintTop_toTopOf="@+id/againBtn2"
+        app:layout_constraintVertical_bias="0.476"
+        app:srcCompat="@drawable/ic_baseline_search_24"
+        tools:ignore="ContentDescription" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
