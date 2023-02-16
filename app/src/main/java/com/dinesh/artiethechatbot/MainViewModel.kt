@@ -1,10 +1,11 @@
-package com.example.artiethechatbot
+package com.dinesh.artiethechatbot
 
 import android.annotation.SuppressLint
 import android.widget.EditText
 import android.widget.TextView
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dinesh.artiethechatbot.network.OpenAIService
 import okhttp3.OkHttpClient
 import okhttp3.ResponseBody
 import okhttp3.logging.HttpLoggingInterceptor
@@ -21,6 +22,7 @@ class MainViewModel : ViewModel() {
     val answerText = MutableLiveData<String>()
     val question = MutableLiveData<String>()
     val answer = MutableLiveData<String>()
+    val ans = MutableLiveData<String>()
 
     fun init(questionEditText: EditText, answerTextView: TextView, generateButton: TextView) {
         this.questionEditText = questionEditText
@@ -32,8 +34,6 @@ class MainViewModel : ViewModel() {
         fun onGenerateButtonClick(mainViewModel: MainViewModel) {
             // Get the user's question from the EditText
             val question = mainViewModel.questionEditText.text.toString()
-//            mainViewModel.questionEditText.text.clear()
-
             // Send the request to the API
             mainViewModel.generateText(question)
         }
@@ -47,16 +47,11 @@ class MainViewModel : ViewModel() {
         }
 
 
-        val client = OkHttpClient.Builder()
-            .addInterceptor(logger)
-            .build()
+        val client = OkHttpClient.Builder().addInterceptor(logger).build()
 
         // Configure the Retrofit object
-        val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.openai.com/")
-            .client(client)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        val retrofit = Retrofit.Builder().baseUrl("https://api.openai.com/").client(client)
+            .addConverterFactory(GsonConverterFactory.create()).build()
 
         // Create an instance of the OpenAIService
         val service = retrofit.create(OpenAIService::class.java)
@@ -73,32 +68,41 @@ class MainViewModel : ViewModel() {
             "stop" to "###"
         )
 
+
         // Make the API request
-        service.generateText(request = request as Map<String, String>).enqueue(object :
-            Callback<ResponseBody> {
-            override fun onResponse(
-                call: Call<ResponseBody>,
-                response: Response<ResponseBody>
-            ) {
-                if (response.isSuccessful) {
-                    val responseBody = response.body()
-                    val responseString = responseBody!!.string()
-                    val jsonResponse = JSONObject(responseString)
+        service.generateText(request = request as Map<String, String>)
+            .enqueue(object : Callback<ResponseBody> {
+                override fun onResponse(
+                    call: Call<ResponseBody>, response: Response<ResponseBody>
+                ) {
+                    if (prompt == "what is your name".trim() || prompt == "what is your name".trim()
+                            .uppercase() || prompt == "what is your name".trim().lowercase()
+                    ) {
+                        answerText.value = "I am Artie, your personal assistant."
+                        ans.value = "I am Artie, your personal assistant."
+                    } else if (response.isSuccessful) {
+                        val responseBody = response.body()
+                        val responseString = responseBody!!.string()
+                        val jsonResponse = JSONObject(responseString)
 
-                    val choices = jsonResponse.getJSONArray("choices").getJSONObject(0)
-                    val text = (choices.getString("text"))
-                    question.value = "Question : ${prompt.trim()}"
-                    answer.value = "Answer :\n${text.trim()}"
+                        val choices = jsonResponse.getJSONArray("choices").getJSONObject(0)
+                        val text = (choices.getString("text"))
+                        question.value = "Question : ${prompt.trim()}"
+                        answer.value = "Answer :\n${text.trim()}"
+                        ans.value = text.trim()
 
-                    answerText.value = "Question : $prompt\n\n${text.trim()}"
-                } else {
-                    answerText.value = response.errorBody()?.string()
+
+                        answerText.value = "Question : $prompt\n\n${text.trim()}"
+                    } else {
+                        answerText.value = response.errorBody()?.string()
+                    }
                 }
-            }
 
-            override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                answerText.value = t.message
-            }
-        })
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    answerText.value = "There is something problem.Please retry!"
+                    ans.value = "There is something problem.\nPlease retry!"
+                }
+            })
     }
+
 }

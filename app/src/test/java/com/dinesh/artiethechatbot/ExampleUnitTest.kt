@@ -1,4 +1,4 @@
-package com.example.artiethechatbot
+package com.dinesh.artiethechatbot
 
 import org.junit.Test
 

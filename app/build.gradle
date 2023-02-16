@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace 'com.example.artiethechatbot'
+    namespace 'com.dinesh.artiethechatbot'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.artiethechatbot"
+        applicationId "com.dinesh.artiethechatbot"
         minSdk 21
         targetSdk 33
         versionCode 1
@@ -58,6 +58,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.3'
     implementation 'androidx.navigation:navigation-ui-ktx:2.5.3'
     implementation "com.squareup.moshi:moshi:1.13.0"
+//    implementation 'androidx.speech:speech:1.0.0'
 //    implementation 'androidx.databinding:databinding-library:4.0.1'
     implementation "com.squareup.moshi:moshi-kotlin:1.13.0"
+    implementation 'androidx.core:core-splashscreen:1.0.0'
 }

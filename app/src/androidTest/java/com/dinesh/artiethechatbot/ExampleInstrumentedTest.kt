@@ -1,4 +1,4 @@
-package com.example.artiethechatbot
+package com.dinesh.artiethechatbot
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
