@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         //Text-to-speech
-        textToSpeech()
+        initTextToSpeech()
 
         // Create an instance of the MainViewModel class
         val mainViewModel = MainViewModel()
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
         val share = binding.shareButton
         val speak = binding.speakBtn
 
-        fun genBtnClicked() {
+        fun onAskButtonClicked() {
             if (binding.messageInput.text.isNotBlank()) {
                 MainViewModel.onGenerateButtonClick(mainViewModel)
                 answerTextView.text = getString(R.string.typing)
@@ -59,7 +59,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        fun againBtnClicked() {
+        fun onAgainBtnClicked() {
             questionEditText.text.clear()
             answerTextView.text = getString(R.string.ans_show)
             againButton.visibility = View.INVISIBLE
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
             tts.stop()
         }
 
-        fun shareBtnClicked() {
+        fun onShareBtnClicked() {
             val intent = Intent()
             intent.action = Intent.ACTION_SEND
             intent.putExtra(
@@ -79,7 +79,7 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent.createChooser(intent, "Share To:"))
         }
 
-        fun speakPressed() {
+        fun onSpeakPressed() {
             val text = mainViewModel.ans.value
             tts.speak(text, TextToSpeech.QUEUE_FLUSH, null, null)
         }
@@ -91,7 +91,7 @@ class MainActivity : AppCompatActivity() {
         // Set up the generate button click listener
         questionEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_GO) {
-                genBtnClicked()
+                onAskButtonClicked()
                 return@setOnEditorActionListener true
             }
             return@setOnEditorActionListener false
@@ -102,15 +102,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         speak.setOnClickListener {
-            speakPressed()
+            onSpeakPressed()
         }
         answerTextView.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
-
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 when {
                     s?.length!! > 10 -> speak.performClick()
@@ -120,13 +118,13 @@ class MainActivity : AppCompatActivity() {
 
 
         generateButton.setOnClickListener {
-            genBtnClicked()
+            onAskButtonClicked()
         }
         againButton.setOnClickListener {
-            againBtnClicked()
+            onAgainBtnClicked()
         }
         share.setOnClickListener {
-            shareBtnClicked()
+            onShareBtnClicked()
         }
 
         // Observe the answerText LiveData object and update the answerTextView text accordingly
@@ -157,10 +155,10 @@ class MainActivity : AppCompatActivity() {
         super.onDestroy()
         tts.stop()
         tts.shutdown()
-        Log.i("onDestroyTag", "OnDestroy Called")
+        Log.i("onDestroyTag", "On Destroy Called")
     }
 
-    private fun textToSpeech() {
+    private fun initTextToSpeech() {
         tts = TextToSpeech(this) {
             if (it == TextToSpeech.SUCCESS) {
                 tts.language = Locale.US

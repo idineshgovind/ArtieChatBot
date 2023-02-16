@@ -12,6 +12,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import org.json.JSONObject
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.*
 
 
 @SuppressLint("StaticFieldLeak")
@@ -24,7 +25,7 @@ class MainViewModel : ViewModel() {
     val answer = MutableLiveData<String>()
     val ans = MutableLiveData<String>()
 
-    fun init(questionEditText: EditText, answerTextView: TextView, generateButton: TextView) {
+    fun init(questionEditText: EditText,answerTextView: TextView, generateButton: TextView) {
         this.questionEditText = questionEditText
         this.answerTextView = answerTextView
         this.generateButton = generateButton
@@ -68,14 +69,14 @@ class MainViewModel : ViewModel() {
             "stop" to "###"
         )
 
-
         // Make the API request
         service.generateText(request = request as Map<String, String>)
             .enqueue(object : Callback<ResponseBody> {
                 override fun onResponse(
                     call: Call<ResponseBody>, response: Response<ResponseBody>
                 ) {
-                    if (prompt == "what is your name".trim() || prompt == "what is your name".trim()
+                    if (prompt == "what is your name".trim()
+                            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ENGLISH) else it.toString() } || prompt == "what is your name".trim()
                             .uppercase() || prompt == "what is your name".trim().lowercase()
                     ) {
                         answerText.value = "I am Artie, your personal assistant."
@@ -99,8 +100,8 @@ class MainViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
-                    answerText.value = "There is something problem.Please retry!"
-                    ans.value = "There is something problem.\nPlease retry!"
+                    answerText.value = "There is some problem.Please retry!"
+                    ans.value = "There is some problem.\nPlease retry!"
                 }
             })
     }
