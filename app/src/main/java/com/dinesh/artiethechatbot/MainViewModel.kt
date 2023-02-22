@@ -81,7 +81,13 @@ class MainViewModel : ViewModel() {
                     ) {
                         answerText.value = "I am Artie, your personal assistant."
                         ans.value = "I am Artie, your personal assistant."
-                    } else if (response.isSuccessful) {
+                    }else if (prompt == "hi".trim()
+                            .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.ENGLISH) else it.toString() } || prompt == "what is your name".trim()
+                            .uppercase() || prompt == "hi".trim().lowercase()
+                    ){
+                        answerText.value = "Hi, I am Artie"
+                        ans.value = "Hi, I am Artie"
+                    }else if (response.isSuccessful) {
                         val responseBody = response.body()
                         val responseString = responseBody!!.string()
                         val jsonResponse = JSONObject(responseString)

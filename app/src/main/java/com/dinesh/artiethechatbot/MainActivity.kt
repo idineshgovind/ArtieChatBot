@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
 
         // Set up the generate button click listener
         questionEditText.setOnEditorActionListener { _, actionId, _ ->
-            if (actionId == EditorInfo.IME_ACTION_GO) {
+            if (actionId == EditorInfo.IME_ACTION_DONE) {
                 onAskButtonClicked()
                 return@setOnEditorActionListener true
             }
@@ -132,13 +132,11 @@ class MainActivity : AppCompatActivity() {
             answerTextView.text = it
         }
     }
-
     private fun hideKeyboard(context: Context, view: View?) {
         val inputMethodManager =
             context.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
         inputMethodManager.hideSoftInputFromWindow(view!!.windowToken, 0)
     }
-
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
@@ -150,14 +148,12 @@ class MainActivity : AppCompatActivity() {
             binding.sendBtn.performClick()
         }
     }
-
     override fun onDestroy() {
         super.onDestroy()
         tts.stop()
         tts.shutdown()
         Log.i("onDestroyTag", "On Destroy Called")
     }
-
     private fun initTextToSpeech() {
         tts = TextToSpeech(this) {
             if (it == TextToSpeech.SUCCESS) {
@@ -168,7 +164,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun micPressed() {
         startActivityForResult(
             Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH).apply {
@@ -180,6 +175,5 @@ class MainActivity : AppCompatActivity() {
         )
         tts.stop()
     }
-
 }
 

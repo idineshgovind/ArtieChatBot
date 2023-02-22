@@ -5,16 +5,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@drawable/peakpx"
     tools:context=".MainActivity">
 
 
     <TextView
         android:id="@+id/againBtn2"
-        android:layout_width="159dp"
-        android:layout_height="45dp"
+        android:layout_width="163dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/rounded_button"
-        android:fontFamily="@font/roboto_mediumm"
+        android:fontFamily="@font/andada"
         android:gravity="center"
         android:paddingStart="45sp"
         android:text="Clear All"
@@ -24,55 +25,51 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.165"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.354"
+        app:layout_constraintTop_toBottomOf="@+id/message_input"
+        app:layout_constraintVertical_bias="0.057"
         tools:ignore="HardcodedText,RtlCompat,RtlSymmetry" />
 
     <TextView
         android:id="@+id/titleText"
         android:layout_width="match_parent"
-        android:layout_height="78dp"
-        android:background="@drawable/roundedbottom"
-        android:fontFamily="@font/roboto_mediumm"
+        android:layout_height="57dp"
+        android:background="@color/mainColor"
+        android:fontFamily="@font/andada"
         android:gravity="center"
         android:text="@string/titleText"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="22sp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="1dp" />
 
-    <TextView
-        android:id="@+id/quesTitle"
-        android:layout_width="match_parent"
-        android:layout_height="110dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_ques"
-        android:fontFamily="@font/roboto_mediumm"
-        android:paddingStart="25sp"
-        android:paddingTop="7sp"
-        android:text="@string/question_goes"
-        android:textColor="#5A5A5A"
-        android:textSize="20sp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="57dp"
+        android:layout_height="46dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/robot_orange"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.034"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titleText"
-        tools:ignore="RtlSymmetry" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/message_input"
-        android:layout_width="match_parent"
-        android:layout_height="74dp"
+        android:layout_width="351dp"
+        android:layout_height="98dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="68dp"
         android:layout_marginEnd="16dp"
-        android:background="@drawable/rouned_et"
+        android:background="@drawable/roundbg"
         android:ems="10"
-        android:fontFamily="@font/roboto_mediumm"
+        android:fontFamily="@font/andada"
         android:hint="@string/type_something"
-        android:imeOptions="actionGo"
+        android:imeOptions="actionDone"
         android:importantForAutofill="no"
         android:inputType="text"
         android:paddingStart="25sp"
@@ -81,67 +78,49 @@
         android:textColor="@color/black"
         android:textColorHint="#78909C"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/quesTitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/quesTitle"
-        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintTop_toBottomOf="@+id/titleText"
         tools:ignore="RtlSymmetry" />
+
 
     <TextView
         android:id="@+id/sendBtn"
         android:layout_width="88dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="308dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/rounded_button"
         android:clickable="true"
         android:focusable="true"
-        android:fontFamily="@font/roboto_mediumm"
+        android:fontFamily="@font/andada"
         android:gravity="center"
         android:text="@string/go"
         android:textColor="@color/white"
         android:textSize="22sp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.904"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/quesTitle"
-        app:layout_constraintVertical_bias="0.148"
+        app:layout_constraintTop_toBottomOf="@+id/message_input"
         tools:ignore="TextContrastCheck" />
-
-    <View
-        android:id="@+id/view2"
-        android:layout_width="match_parent"
-        android:layout_height="305dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/rounded_ques"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sendBtn" />
-
 
     <ScrollView
         android:id="@+id/ansScroll"
         android:layout_width="match_parent"
         android:layout_height="282dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="140dp"
         android:layout_marginEnd="16dp"
         android:background="@drawable/rouned_et"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view2"
-        app:layout_constraintVertical_bias="1.0">
+        app:layout_constraintTop_toBottomOf="@+id/message_input">
 
         <TextView
             android:id="@+id/textAns"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/andada"
             android:paddingStart="20sp"
             android:paddingTop="20sp"
             android:paddingEnd="20sp"
@@ -155,6 +134,7 @@
         android:id="@+id/shareButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="@string/share_answer"
         android:textColor="@color/white"
         android:visibility="invisible"
@@ -162,8 +142,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view2"
-        app:layout_constraintVertical_bias="0.451" />
+        app:layout_constraintTop_toBottomOf="@+id/ansScroll" />
 
     <ImageButton
         android:id="@+id/micBtn"
@@ -174,22 +153,22 @@
         android:background="@drawable/hello"
         app:layout_constraintBottom_toTopOf="@+id/againBtn2"
         app:layout_constraintEnd_toEndOf="@+id/message_input"
-        app:layout_constraintHorizontal_bias="0.954"
+        app:layout_constraintHorizontal_bias="0.983"
         app:layout_constraintStart_toStartOf="@+id/message_input"
         app:layout_constraintTop_toTopOf="@+id/message_input"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.338"
         app:srcCompat="@android:drawable/ic_btn_speak_now" />
 
     <ImageButton
         android:id="@+id/speakBtn"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="61dp"
+        android:layout_height="58dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
         android:background="@drawable/hello"
         android:onClick="onSpeakButtonClicked"
-        app:layout_constraintBottom_toBottomOf="@+id/view2"
-        app:layout_constraintEnd_toEndOf="@+id/ansScroll"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
+        app:layout_constraintBottom_toBottomOf="@+id/ansScroll"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@drawable/baseline_volume_up_24" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,10 +2,10 @@
     <string name="app_name">Artie the ChatBot</string>
     <string name="titleText">Artie the ChatBot</string>
     <string name="question_goes">Your question goes here!</string>
-    <string name="type_something">Type or Speak something…</string>
+    <string name="type_something">Ask me anything…</string>
     <string name="go">Ask</string>
     <string name="ans_show">Answer will be shown here</string>
-    <string name="typing">Typing…</string>
+    <string name="typing">Thinking…</string>
     <string name="answer_will_be_shown_here">Answer will be shown here</string>
     <string name="share_answer">Share answer</string>
     <string name="speech_prompt">Speak Now</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.AppCompat.MySplash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">#EA8D47</item>
+        <item name="windowSplashScreenBackground">@color/mainColor</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/robot_orange</item>
         <item name="postSplashScreenTheme">@style/Theme.ArtieTheChatbot</item>
         <item name="android:windowSplashScreenBehavior">icon_preferred</item>
